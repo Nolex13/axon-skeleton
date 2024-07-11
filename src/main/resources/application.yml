@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: axon
+  datasource:
+    url: jdbc:mysql://localhost:3306
+    username: username
+    password: password
+axon:
+  axonserver:
+    servers: "localhost"

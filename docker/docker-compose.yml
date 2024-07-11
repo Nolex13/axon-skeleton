@@ -1,0 +1,26 @@
+services:
+  axon-db:
+    build: db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: "password"
+      MYSQL_USER: "username"
+      MYSQL_PASSWORD: "password"
+    ports:
+      - 3306:3306
+    volumes:
+      - type: bind
+        source: ./db/init
+        target: /docker-entrypoint-initdb.d
+    networks:
+      - axon
+  axon-server:
+    image: axoniq/axonserver
+    ports:
+      - 8024:8024
+      - 8124:8124
+    networks:
+      - axon
+networks:
+  axon:
+    name: axon
